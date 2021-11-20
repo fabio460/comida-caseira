@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.box{
+  width: 100px;
+  height: 100px;
+  background-color: yellowgreen;
+  margin: 10px;
+  transition: 0.5s;
+  color: yellowgreen;
+}
+.box:hover{
+  opacity: 0.5;
+  padding: 20px;
+  transition: 0.5s;
+  color: red;
+
+}
