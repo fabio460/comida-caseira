@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import NavBar from "./navBar";
 import Api from './api';
+//import {useHistory} from 'react-router-dom'
 function AdicionarCarrinho(){
     const Container = styled.div`
       .containerAdicionarCarrinho{
@@ -86,6 +87,10 @@ function AdicionarCarrinho(){
     .span_btn{
         cursor:pointer
     }
+    .imagem_modal{
+        width:40%;
+        margin-right:10px;
+    }
     @media(max-width:400px){
         .tela{
             grid-template-columns:1fr;
@@ -106,8 +111,12 @@ function AdicionarCarrinho(){
              margin:10px 0px;
              
          }
+         h3{
+             font-size:20px;
+         }
     }
     `
+
     const fechar = ()=>{
         document.querySelector('.modal_login').classList.remove('visivel')
         document.querySelector('.modal_login_body').style='width:0px';
@@ -146,7 +155,7 @@ function AdicionarCarrinho(){
 
    const adicionarCarrinho = ()=>{
        Api.inserirCarrinho(nome,imagem,valor,quantidade);
-
+     
        
    }
 
@@ -190,20 +199,19 @@ function AdicionarCarrinho(){
        
 
             
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+
 
 
 <div class="modal fade" id="confirmar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-      
+        
+        <img className='imagem_modal' src={imagem} alt=''/>
+        <h3>{nome}</h3>
       </div>
       <div class="modal-body">
-        Item inserido no carrinho de compras
+        <h3>Item inserido no carrinho de compras</h3>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
