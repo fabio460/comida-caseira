@@ -146,6 +146,7 @@ function AdicionarCarrinho(){
 
    const adicionarCarrinho = ()=>{
        Api.inserirCarrinho(nome,imagem,valor,quantidade);
+
        
    }
 
@@ -165,7 +166,7 @@ function AdicionarCarrinho(){
                             <span>{quantidade}</span>
                             <span className='span_btn' onClick={mais}>+</span>
                         </div>
-                        <button className='button' onClick={adicionarCarrinho}>adicionar</button>
+                        <button className='button' onClick={adicionarCarrinho} data-toggle="modal" data-target="#confirmar">adicionar</button>
                     </div>
                     <div>
                         <h4>{peso}</h4>
@@ -187,6 +188,30 @@ function AdicionarCarrinho(){
             </footer>
 
        
+
+            
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
+<div class="modal fade" id="confirmar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+      
+      </div>
+      <div class="modal-body">
+        Item inserido no carrinho de compras
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
         </Container>
     </>
 }

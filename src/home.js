@@ -4,7 +4,7 @@ import NavBar from './navBar';
 import styled from "styled-components";
 import MineCarousel from "./mineCarousel";
 import Api from "./api";
-import ItemCart from "./itemCart";
+
 function Home(){
     
     const Container = styled.div`
@@ -47,7 +47,16 @@ function Home(){
             background-color: wheat;
             padding:auto;
         }
-    
+        span img{
+            width:70px;
+        }
+        span{
+            margin:10px;
+        }
+        .modal_login_body_itens{
+            border:solid black.1px;
+            padding:10px;
+        }
 `
 
 
@@ -75,6 +84,12 @@ function Home(){
     async function setarCart(){
        const l =await Api.listarCarrinho();
        setCart(l)
+    } 
+
+    const excluirCard = (e)=>{
+       Api.deletarCarrinho(e.target.id)
+       setarCart()
+       window.location.reload()
     }
     useEffect(()=>{
         setarCart()
@@ -87,7 +102,17 @@ function Home(){
        <Container>
             <div className='modal_login'>
                 <div className='modal_login_body'>
-                    <div className='modal_login_body_itens'></div>
+                    {cart.map((item)=>{
+                     return <div className='modal_login_body_itens'>
+                         <span>
+                            <span><img src={item.imagem} alt=''/></span>
+                            <span>{item.nome}</span>
+                            <span>R$ {item.valor}</span>
+                            <span >quant {item.quantidade}</span>
+                         </span>
+                         <span ><button id={item._id} onClick={excluirCard}>x</button></span>
+                      </div>                          
+                    })}
                     <button onClick={fechar}>fechar</button>
                 </div>
             </div>
