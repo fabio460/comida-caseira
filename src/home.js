@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import Carousel from './Carousel';
 import NavBar from './navBar';
 import styled from "styled-components";
 import MineCarousel from "./mineCarousel";
+import Api from "./api";
+import ItemCart from "./itemCart";
 function Home(){
-
+    
     const Container = styled.div`
         .modal_login{
             background-color: rgba(14, 13, 13,0.5);
@@ -69,13 +71,23 @@ function Home(){
         }, 300);
     }
 
-    
+    const [cart,setCart]=useState([])
+    async function setarCart(){
+       const l =await Api.listarCarrinho();
+       setCart(l)
+    }
+    useEffect(()=>{
+        setarCart()
+    },[])
+
+  
     return<>
        <NavBar abrir={abrir} fechar={fechar}/>
        <Carousel/>
        <Container>
             <div className='modal_login'>
                 <div className='modal_login_body'>
+                    <div className='modal_login_body_itens'></div>
                     <button onClick={fechar}>fechar</button>
                 </div>
             </div>

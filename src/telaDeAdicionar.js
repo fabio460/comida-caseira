@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NavBar from "./navBar";
+import Api from './api';
 function AdicionarCarrinho(){
     const Container = styled.div`
       .containerAdicionarCarrinho{
@@ -15,7 +16,7 @@ function AdicionarCarrinho(){
       img{
 
       }
-      button{
+      .button{
         background-color: rgb(76, 196, 255);
            color:white;
            cursor:pointer;
@@ -23,7 +24,7 @@ function AdicionarCarrinho(){
            height:40px;
            width:400px;
        }
-       button:hover{
+       .button:hover{
         background-color: rgb(76, 156, 255);
        }
        .p2 button{
@@ -79,6 +80,33 @@ function AdicionarCarrinho(){
         background-color: wheat;
         padding:auto;
     }
+    span{
+        margin:20px;
+    }
+    .span_btn{
+        cursor:pointer
+    }
+    @media(max-width:400px){
+        .tela{
+            grid-template-columns:1fr;
+         }
+         .tela img{
+             width:100%;
+            
+         }
+         .tela button{
+             width:100%;
+             margin-bottom:20px;
+         }
+         footer{
+             font-size:10px;
+             height:50px;
+         }
+         .p3{
+             margin:10px 0px;
+             
+         }
+    }
     `
     const fechar = ()=>{
         document.querySelector('.modal_login').classList.remove('visivel')
@@ -104,6 +132,25 @@ function AdicionarCarrinho(){
    const ingredientes = localStorage.getItem('ingredientes')
    const descricao = localStorage.getItem('descricao')
    const valor = localStorage.getItem('valor')
+
+
+   const [quantidade,setQuantidade]=useState(1);
+   const mais = ()=>{
+      setQuantidade(quantidade + 1)
+   }
+   const menos = ()=>{
+      if(quantidade > 1){
+          setQuantidade(quantidade - 1)
+      }
+   }
+
+   const adicionarCarrinho = ()=>{
+       Api.inserirCarrinho(nome,imagem,valor,quantidade);
+       
+   }
+
+
+
     return<>
         <NavBar abrir={abrir} fechar={fechar}/>
         <Container>
@@ -113,18 +160,24 @@ function AdicionarCarrinho(){
                     <div className='p2'>
                         <h1>{nome}</h1>
                         <h2>R$ {valor}</h2>
-                        <button>adicionar</button>
+                        <div className='botoes'>
+                            <span className='span_btn' onClick={menos}>-</span>
+                            <span>{quantidade}</span>
+                            <span className='span_btn' onClick={mais}>+</span>
+                        </div>
+                        <button className='button' onClick={adicionarCarrinho}>adicionar</button>
                     </div>
                     <div>
                         <h4>{peso}</h4>
                         {descricao}
                     </div>
-                    <div><h4>Ingrediente </h4>{ingredientes}</div>
+                    <div className='p3'><h4>Ingrediente </h4>{ingredientes}</div>
                 </div>
             </div>
+            
             <div className='modal_login'>
                 <div className='modal_login_body'>
-                    <button onClick={fechar}>fechar</button>
+                    <button  onClick={fechar}>fechar</button>
                 </div>
             </div>
             <footer>
@@ -132,6 +185,8 @@ function AdicionarCarrinho(){
                 <div>dúvidas frequentes</div>
                 <div>preço de ajuda</div>
             </footer>
+
+       
         </Container>
     </>
 }
