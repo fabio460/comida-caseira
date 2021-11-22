@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from './Carousel';
 import NavBar from './navBar';
 import styled from "styled-components";
+import MineCarousel from "./mineCarousel";
 function Home(){
 
     const Container = styled.div`
@@ -67,19 +68,21 @@ function Home(){
             document.querySelector('.modal_login_body').style='width:50%';
         }, 300);
     }
-//
+
     
     return<>
        <NavBar abrir={abrir} fechar={fechar}/>
        <Carousel/>
        <Container>
             <div className='modal_login'>
-                    <div className='modal_login_body'>
-                        <button onClick={fechar}>fechar</button>
-                    </div>
+                <div className='modal_login_body'>
+                    <button onClick={fechar}>fechar</button>
                 </div>
+            </div>
             
-        </Container>    
+        </Container>  
+        <MineCarousel/>  
+        <MineCarousel/>
     </>
 }
 export default Home;

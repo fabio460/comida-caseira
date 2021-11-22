@@ -46,7 +46,7 @@ function NavBar({abrir}){
   
           <div className='nav container_nav'>
                 <nav class="navbar navbar-expand-lg navbar navbar-light style=background-color: #e3f2fd">
-                  <a class="navbar-brand" href="h">Comida caseira</a>
+                  <a class="navbar-brand" href="/">Comida caseira</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
