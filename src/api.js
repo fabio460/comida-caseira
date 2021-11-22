@@ -19,14 +19,22 @@ const Api = {
        })
     },
     listarCarrinho : async ()=>{
+      try {
         const f =await fetch(link+'listarCar')
         const j =await f.json()
         return j;
+      } catch (error) {
+          window.location.reload()
+      }
     },
     deletarCarrinho : (id)=>{
-       fetch(link+"deletarcar/"+id,{
-           method:"DELETE"
-       })
+      try {
+        fetch(link+"deletarcar/"+id,{
+            method:"DELETE"
+        })
+      } catch (error) {
+          window.location.reload()
+      }
     }
 }
 export default Api;
